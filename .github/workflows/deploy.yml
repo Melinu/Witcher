@@ -13,12 +13,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: "lts/*"
-          cache: "npm"
       
       - name: Setup Bun Runtime
         uses: antongolub/action-setup-bun@v1
