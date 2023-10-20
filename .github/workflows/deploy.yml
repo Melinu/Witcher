@@ -5,17 +5,15 @@ on:
     branches:
       - main
 
-  workflow_dispatch:
-
 jobs:
   deployment:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       
-      - name: Setup Bun Runtime
-        uses: antongolub/action-setup-bun@v1
+      - name: Runtime
+        uses: oven-sh/setup-bun
         with:
           cache: true
 
@@ -23,10 +21,11 @@ jobs:
         run: |
           bun install
           bun bun --use next
-          bun export
+          bun run export
           
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
+
